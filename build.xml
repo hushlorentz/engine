@@ -1,0 +1,33 @@
+<project name="Green Pixel Java Engine" default="jar" basedir=".">
+	<description>Compiles the Java Engine</description>
+	<property name="src" location="."/>
+	<property name="build" location="bin"/>
+
+	<path id="classpath">
+		<fileset dir="${src}../../../lwjgl-2.8.3/jar" includes="lwjgl.jar"/>
+		<fileset dir="${src}../../../slick/lib" includes="slick.jar"/>
+	</path>	
+
+	<target name="init">
+		<!-- Create a time stamp -->
+		<tstamp/>
+		<!-- Create the build directory -->
+		<mkdir dir="${build}"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<!-- Compile the source from ${src} to ${build} -->
+
+		<javac srcdir="${src}" destdir="${build}" classpathref="classpath"/>
+	</target>
+
+	<target name="jar" depends="compile">
+		<!-- Compile the source and package in a jar -->
+		<jar destfile="greenpixel.jar" basedir="bin"/>
+	</target>	
+
+	<target name="clean">
+		<!-- Delete the ${build} directory tree -->
+		<delete dir="${build}"/>
+	</target>
+</project>	
